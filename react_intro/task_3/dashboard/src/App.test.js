@@ -1,8 +1,24 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('App renders without crashing', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+});
+
+test('App renders a div with the class App-header', () => {
+  render(<App />);
+  const appHeader = screen.getByTestId('app-header');
+  expect(appHeader).toBeInTheDocument();
+});
+
+test('App renders a div with the class App-body', () => {
+  render(<App />);
+  const appBody = screen.getByTestId('app-body');
+  expect(appBody).toBeInTheDocument();
+});
+
+test('App renders a div with the class App-footer', () => {
+  render(<App />);
+  const appFooter = screen.getByTestId('app-footer');
+  expect(appFooter).toBeInTheDocument();
 });
