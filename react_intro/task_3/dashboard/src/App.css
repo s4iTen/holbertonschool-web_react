@@ -1,0 +1,40 @@
+.div {
+  text-align: center;
+  
+}
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
+.App-header {
+  display: flex;
+  flex-direction: row;
+  color: red;
+  align-items: center ;
+  border-top: 5px solid red;
+  margin-top: 20px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.Flex {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 5px solid red;
+  padding-bottom: 20px;
+
+}
