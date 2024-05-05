@@ -1,0 +1,22 @@
+#CourseList {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+#CourseList thead tr:nth-child(1) th:first-child {
+    text-align: center;
+}
+
+#CourseList thead tr {
+    border-bottom: 1px solid #ccc;
+}
+
+
+#CourseList td, #CourseList th {
+    text-align: left;
+}
+
+#CourseList th {
+    font-family: sans-serif;
+}
