@@ -54,9 +54,6 @@ class App extends React.Component {
         <div className="App-header">
           <Header />
         </div>
-        <BodySection title="News from the School">
-          <p>Some random text</p>
-        </BodySection>
         <div className="App-body">
           {this.props.isLoggedIn ? (
             <BodySectionWithMarginBottom title="Course list">
