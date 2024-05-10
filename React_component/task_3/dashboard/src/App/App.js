@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer";
 import CourseList from "../CourseList/CourseList";
 import "./App.css";
 import { BodySection } from "../BodySection/BodySection";
+import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
 
 class App extends React.Component {
   static propTypes = {
@@ -53,15 +54,18 @@ class App extends React.Component {
         <div className="App-header">
           <Header />
         </div>
-        <div>
-          <BodySection title="test" />
-          <h1>hello</ h1>
-        </div>
+        <BodySection title="News from the School">
+          <p>Some random text</p>
+        </BodySection>
         <div className="App-body">
           {this.props.isLoggedIn ? (
-            <CourseList listCourses={this.listCourses} />
+            <BodySectionWithMarginBottom title="Course list">
+              <CourseList listCourses={this.listCourses} />
+            </BodySectionWithMarginBottom>
           ) : (
-            <Login />
+            <BodySectionWithMarginBottom title="Log in to continue">
+              <Login />
+            </BodySectionWithMarginBottom>
           )}
         </div>
         <div className="App-footer">
