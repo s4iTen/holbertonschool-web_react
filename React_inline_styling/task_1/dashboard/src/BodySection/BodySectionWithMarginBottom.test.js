@@ -4,7 +4,10 @@ jest.mock('aphrodite', () => ({
       bodySectionWithMargin: { marginBottom: '40px' },
     })),
   },
-  css: jest.fn(),
+  css: jest.fn().mockImplementation(() => 'className'),
+  StyleSheetTestUtils: {
+    suppressStyleInjection: jest.fn(),
+  },
 }));
 
 import React from 'react';

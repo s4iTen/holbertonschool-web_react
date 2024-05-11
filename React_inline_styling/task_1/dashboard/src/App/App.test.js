@@ -7,6 +7,9 @@ jest.mock('aphrodite', () => ({
     })),
   },
   css: jest.fn().mockImplementation(() => 'className'),
+  StyleSheetTestUtils: {
+    suppressStyleInjection: jest.fn(),
+  },
 }));
 
 import { shallow } from "enzyme";

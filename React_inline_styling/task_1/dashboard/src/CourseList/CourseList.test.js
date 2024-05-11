@@ -7,7 +7,10 @@ jest.mock('aphrodite', () => ({
       th: {},
     })),
   },
-  css: jest.fn(),
+  css: jest.fn().mockImplementation(() => 'className'),
+  StyleSheetTestUtils: {
+    suppressStyleInjection: jest.fn(),
+  },
 }));
 
 // CourseList/CourseList.test.js
