@@ -8,22 +8,26 @@ import { StyleSheet, css } from "aphrodite";
 
 const styles = StyleSheet.create({
   notifications: {
-    border: "3px dashed #e01d3f",
-    padding: "10px",
-    marginBottom: "20px",
+      float: 'right',
+      border: '2px dashed #e01d3f',
+      padding: '10px',
+      marginBottom: '20px',
   },
   buttonImg: {
-    width: "10px",
+      width: '10px',
   },
   p: {
-    margin: "0",
-    marginTop: "15px",
+      margin: '0',
+      marginTop: '15px',
   },
-  default: {
-    color: "blue",
+  defaultNotification: {
+      color: 'blue',
   },
-  urgent: {
-    color: "red",
+  urgentNotification: {
+      color: 'red',
+  },
+  menuItem: {
+      textAlign: 'right',
   },
 });
 
@@ -85,6 +89,8 @@ class Notifications extends React.Component {
                     value={value}
                     html={html}
                     markAsRead={this.markAsRead}
+                    css={css}
+                    styles={styles}
                   />
                 ))
               )}
