@@ -1,3 +1,11 @@
+function printTeacher(firstName: string, lastName: string): string {
+  return `${firstName[0]}. ${lastName}`;
+}
+
+interface printTeacherFunction {
+  (firstName: string, lastName: string): string;
+}
+
 interface Teacher {
   readonly firstName: string;
   readonly lastName: string;
@@ -16,3 +24,4 @@ const teacher3: Teacher = {
 };
 
 console.log(teacher3);
+console.log(printTeacher(teacher3.firstName, teacher3.lastName));
