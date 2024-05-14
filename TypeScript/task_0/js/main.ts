@@ -20,22 +20,36 @@ let student2: Student = {
 };
 
 let studentsList: Student[] = [student1, student2];
-// Create table
-let table = document.createElement('table');
 
-function createStudentTable(Students: Student[]) {
-    const tableElement = document.createElement('table');
-  
-    Students.forEach(Student => {
-      const tableRow = tableElement.insertRow();
-      const firstNameCell = tableRow.insertCell(0);
-      const locationCell = tableRow.insertCell(1);
-  
-      firstNameCell.textContent = Student.firstName;
-      locationCell.textContent = Student.location;
-    });
-  
-    document.body.appendChild(tableElement);
+function createStudentTable(students: Student[]) {
+  // Check if table already exists
+  const existingTable = document.querySelector('table');
+  if (existingTable) {
+    existingTable.remove(); // Remove existing table
+  }
+
+  // Create table
+  const tableElement = document.createElement('table');
+
+  // Create table header
+  const headerRow = tableElement.insertRow();
+  const firstNameHeader = headerRow.insertCell(0);
+  firstNameHeader.textContent = 'First Name';
+  const locationHeader = headerRow.insertCell(1);
+  locationHeader.textContent = 'Location';
+
+  // Create table rows for each student
+  students.forEach(student => {
+    const tableRow = tableElement.insertRow();
+    const firstNameCell = tableRow.insertCell(0);
+    const locationCell = tableRow.insertCell(1);
+
+    firstNameCell.textContent = student.firstName;
+    locationCell.textContent = student.location;
+  });
+
+  // Append table to document body
+  document.body.appendChild(tableElement);
 }
-  
+
 createStudentTable(studentsList);
