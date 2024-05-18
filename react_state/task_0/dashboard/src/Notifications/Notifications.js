@@ -37,16 +37,20 @@ const styles = StyleSheet.create({
 });
 
 class Notifications extends React.Component {
-  static contextTypes = {};
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.markAsRead = this.markAsRead.bind(this);
+  }
 
-  handleClick = () => {
+  handleClick() {
     console.log("Close button has been clicked");
     this.props.handleHideDrawer();
-  };
+  }
 
-  markAsRead = (id) => {
+  markAsRead(id) {
     console.log(`Notification ${id} has been marked as read`);
-  };
+  }
 
   shouldComponentUpdate(nextProps) {
     return (
