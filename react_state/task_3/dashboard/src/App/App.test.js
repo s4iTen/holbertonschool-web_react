@@ -1,3 +1,12 @@
+import { shallow } from "enzyme";
+import App from "./App";
+import React from 'react';
+import { Notifications } from "../Notifications/Notifications";
+import Login from "../Login/Login";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import CourseList from "../CourseList/CourseList";
+
 // Mock Aphrodite
 jest.mock('aphrodite', () => ({
     StyleSheet: {
@@ -12,16 +21,7 @@ jest.mock('aphrodite', () => ({
     },
   }));
   
-  import { shallow } from "enzyme";
-  import App from "./App";
-  import React from 'react';
-  import { Notifications } from "../Notifications/Notifications";
-  import Login from "../Login/Login";
-  import Header from "../Header/Header";
-  import Footer from "../Footer/Footer";
-  import CourseList from "../CourseList/CourseList";
-  
-  describe("<App />", () => {
+describe("<App />", () => {
     it("App renders without crashing", () => {
         const wrapper = shallow(<App />);
         expect(wrapper.exists()).toEqual(true);
@@ -36,7 +36,6 @@ jest.mock('aphrodite', () => ({
         const wrapper = shallow(<App />);
         expect(wrapper.contains(<Header />)).toEqual(true);
     });
-  
   
     it('does not contain the CourseList component', () => {
         const wrapper = shallow(<App />);
@@ -100,11 +99,12 @@ jest.mock('aphrodite', () => ({
         isLoggedIn: true,
       });
     });
+
     it('contains the Login component', () => {
         const logInMock = jest.fn();
         const wrapper = shallow(<App logIn={logInMock} />);
         expect(wrapper.find('Login').exists()).toEqual(true);
-      });
+    });
   
     it('logOut function updates state correctly', () => {
       const wrapper = shallow(<App />);
@@ -116,5 +116,19 @@ jest.mock('aphrodite', () => ({
         isLoggedIn: false,
       });
     });
-  });
-  
+
+    it('markNotificationAsRead removes notification from state', () => {
+      const wrapper = shallow(<App />);
+      const notificationIdToRemove = 2;
+      const initialNotifications = [
+        { id: 1, type: 'default', value: 'Notification 1', html: null },
+        { id: 2, type: 'urgent', value: 'Notification 2', html: null },
+        { id: 3, type: 'urgent', value: 'Notification 3', html: null },
+      ];
+      wrapper.setState({ listNotifications: initialNotifications });
+      wrapper.instance().markNotificationAsRead(notificationIdToRemove);
+      const updatedNotifications = wrapper.state('listNotifications');
+      const isNotificationRemoved = !updatedNotifications.some(notification => notification.id === notificationIdToRemove);
+      expect(isNotificationRemoved).toEqual(true);
+    });
+});

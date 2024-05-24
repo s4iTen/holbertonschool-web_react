@@ -35,6 +35,11 @@ class App extends React.Component {
         password: '',
         isLoggedIn: false,
       },
+      listNotifications: [
+        { id: 1, type: 'default', value: 'New course available', html: null },
+        { id: 2, type: 'urgent', value: 'New resume available', html: null },
+        { id: 3, type: 'urgent', value: 'New data available', html: null },
+      ],
     };
   }
 
@@ -67,17 +72,13 @@ class App extends React.Component {
     this.setState({ displayDrawer: false });
   };
 
-  listCourses = [
-    { id: 1, name: 'ES6', credit: 60 },
-    { id: 2, name: 'Webpack', credit: 20 },
-    { id: 3, name: 'React', credit: 40 },
-  ];
-
-  listNotifications = [
-    { id: 1, type: 'default', value: 'New course available', html: null },
-    { id: 2, type: 'urgent', value: 'New resume available', html: null },
-    { id: 3, type: 'urgent', value: 'New data available', html: null },
-  ];
+  markNotificationAsRead = (id) => {
+    this.setState((prevState) => ({
+      listNotifications: prevState.listNotifications.filter(
+        (notification) => notification.id !== id
+      ),
+    }));
+  };
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleLogout);
@@ -96,7 +97,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { user } = this.state;
+    const { user, listNotifications } = this.state;
     const value = { user, logOut: this.logOut };
 
     return (
@@ -104,7 +105,8 @@ class App extends React.Component {
         <>
           <Notifications
             displayDrawer={this.state.displayDrawer}
-            listNotifications={this.listNotifications}
+            listNotifications={listNotifications}
+            markNotificationAsRead={this.markNotificationAsRead}
             handleDisplayDrawer={this.handleDisplayDrawer}
             handleHideDrawer={this.handleHideDrawer}
           />
