@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import holbimg from "../assets/holbimg.jpg";
 import NotificationItem from "./NotificationItem";
@@ -36,31 +36,14 @@ const styles = StyleSheet.create({
   },
 });
 
-class Notifications extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.markAsRead = this.markAsRead.bind(this);
-  }
-
-  handleClick() {
+class Notifications extends PureComponent {
+  handleClick = () => {
     console.log("Close button has been clicked");
     this.props.handleHideDrawer();
-  }
-
-  markAsRead(id) {
-    console.log(`Notification ${id} has been marked as read`);
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return (
-      nextProps.listNotifications.length !== this.props.listNotifications.length ||
-      nextProps.displayDrawer !== this.props.displayDrawer
-    );
-  }
+  };
 
   render() {
-    const { displayDrawer, listNotifications, handleDisplayDrawer } = this.props;
+    const { displayDrawer, listNotifications, handleDisplayDrawer, markNotificationAsRead } = this.props;
 
     return (
       <>
@@ -99,7 +82,7 @@ class Notifications extends React.Component {
                     type={type}
                     value={value}
                     html={html}
-                    markAsRead={this.markAsRead}
+                    markNotificationAsRead={markNotificationAsRead} // Use markNotificationAsRead prop
                     css={css}
                     styles={styles}
                   />
@@ -118,6 +101,7 @@ Notifications.propTypes = {
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func.isRequired,
   handleHideDrawer: PropTypes.func.isRequired,
+  markNotificationAsRead: PropTypes.func.isRequired, // Define prop type for markNotificationAsRead
 };
 
 Notifications.defaultProps = {
