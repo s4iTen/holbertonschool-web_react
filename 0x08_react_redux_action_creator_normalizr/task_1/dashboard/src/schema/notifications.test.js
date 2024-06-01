@@ -1,4 +1,4 @@
-import normalizedData, { getAllNotificationsByUser } from './notifications';
+import normalizedData from './notifications';
 
 describe('normalizedData', () => {
     it('verifies the result array', () => {
