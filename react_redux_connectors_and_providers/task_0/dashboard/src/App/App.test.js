@@ -3,6 +3,8 @@ import { shallow } from 'enzyme';
 import { App } from './App';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
+import { fromJS } from 'immutable';
+import { mapStateToProps } from './App';
 
 describe('App', () => {
   it('renders without crashing when not logged in', () => {
@@ -37,5 +39,16 @@ describe('App', () => {
     );
 
     expect(wrapper.exists()).toBe(true);
+  });
+});
+describe('mapStateToProps', () => {
+  it('should return the right object when state is passed', () => {
+    let state = fromJS({
+      uiReducer: {
+        isUserLoggedIn: true
+      }
+    });
+
+    expect(mapStateToProps(state)).toEqual({ isLoggedIn: true });
   });
 });
